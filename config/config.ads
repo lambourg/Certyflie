@@ -65,9 +65,44 @@ package Config is
    RADIO_DATARATE      : constant := 0;
 
    --  IMU configuration
-   IMU_GYRO_FS_CONFIG  : constant MPU9250_FS_Gyro_Range
-     := MPU9250_Gyro_FS_2000;
-   IMU_ACCEL_FS_CONFIG : constant MPU9250_FS_Accel_Range
-     := MPU9250_Accel_FS_8;
+   IMU_GYRO_FS_CONFIG  : constant MPU9250_FS_Gyro_Range :=
+                           MPU9250_Gyro_FS_1000;
+   IMU_ACCEL_FS_CONFIG : constant MPU9250_FS_Accel_Range :=
+                           MPU9250_Accel_FS_4;
+
+   --  Sensor Fusion Configuration
+
+   --  madwick quaternion imu
+   MADWICK_BETA : constant := 0.01;
+
+   --  Mahony quaternion imu
+   MAHONY_TWO_KP : constant := 2.0 * 0.4;
+   MAHONY_TWO_KI : constant := 2.0 * 0.001;
+
+   --  PID
+--     PID_KP_ROLL_PITCH_RATE      : constant := 70.0;
+--     PID_KI_ROLL_PITCH_RATE      : constant := 0.0;
+--     PID_KD_ROLL_PITCH_RATE      : constant := 0.0;
+--     PID_I_LIMIT_ROLL_PITCH_RATE : constant := 33.3;
+
+   PID_KP_ROLL_PITCH_RATE      : constant := 250.0;
+   PID_KI_ROLL_PITCH_RATE      : constant := 500.0;
+   PID_KD_ROLL_PITCH_RATE      : constant := 2.5;
+   PID_I_LIMIT_ROLL_PITCH_RATE : constant := 33.3;
+
+   PID_KP_YAW_RATE             : constant := 70.0;
+   PID_KI_YAW_RATE             : constant := 16.7;
+   PID_KD_YAW_RATE             : constant := 0.0;
+   PID_I_LIMIT_YAW_RATE        : constant := 166.7;
+
+   PID_KP_ROLL_PITCH           : constant := 3.5;
+   PID_KI_ROLL_PITCH           : constant := 2.0;
+   PID_KD_ROLL_PITCH           : constant := 0.0;
+   PID_I_LIMIT_ROLL_PITCH      : constant := 20.0;
+
+   PID_KP_YAW                  : constant := 10.0;
+   PID_KI_YAW                  : constant := 1.0;
+   PID_KD_YAW                  : constant := 0.35;
+   PID_I_LIMIT_YAW             : constant := 360.0;
 
 end Config;

@@ -27,6 +27,7 @@
 --  covered by the  GNU Public License.                                     --
 ------------------------------------------------------------------------------
 
+with Config; use Config;
 with Safety; use Safety;
 
 package body Controller
@@ -47,36 +48,48 @@ is
 
    procedure Controller_Init is
    begin
-      Rate_Pid.Pid_Init (Roll_Rate_Pid, 0.0, PID_ROLL_RATE_KP,
-                         PID_ROLL_RATE_KI, PID_ROLL_RATE_KD,
-                         -PID_ROLL_RATE_INTEGRATION_LIMIT,
-                         PID_ROLL_RATE_INTEGRATION_LIMIT,
+      Rate_Pid.Pid_Init (Roll_Rate_Pid, 0.0,
+                         PID_KP_ROLL_PITCH_RATE,
+                         PID_KI_ROLL_PITCH_RATE,
+                         PID_KD_ROLL_PITCH_RATE,
+                         -PID_I_LIMIT_ROLL_PITCH_RATE,
+                         PID_I_LIMIT_ROLL_PITCH_RATE,
                          IMU_UPDATE_DT);
-      Rate_Pid.Pid_Init (Pitch_Rate_Pid, 0.0, PID_PITCH_RATE_KP,
-                         PID_PITCH_RATE_KI, PID_PITCH_RATE_KD,
-                         -PID_PITCH_RATE_INTEGRATION_LIMIT,
-                         PID_PITCH_RATE_INTEGRATION_LIMIT,
+      Rate_Pid.Pid_Init (Pitch_Rate_Pid, 0.0,
+                         PID_KP_ROLL_PITCH_RATE,
+                         PID_KI_ROLL_PITCH_RATE,
+                         PID_KD_ROLL_PITCH_RATE,
+                         -PID_I_LIMIT_ROLL_PITCH_RATE,
+                         PID_I_LIMIT_ROLL_PITCH_RATE,
                          IMU_UPDATE_DT);
-      Rate_Pid.Pid_Init (Yaw_Rate_Pid, 0.0, PID_YAW_RATE_KP,
-                         PID_YAW_RATE_KI, PID_YAW_RATE_KD,
-                         -PID_YAW_RATE_INTEGRATION_LIMIT,
-                         PID_YAW_RATE_INTEGRATION_LIMIT,
+      Rate_Pid.Pid_Init (Yaw_Rate_Pid, 0.0,
+                         PID_KP_YAW_RATE,
+                         PID_KI_YAW_RATE,
+                         PID_KD_YAW_RATE,
+                         -PID_I_LIMIT_YAW_RATE,
+                         PID_I_LIMIT_YAW_RATE,
                          IMU_UPDATE_DT);
 
-      Attitude_Pid.Pid_Init (Roll_Pid, 0.0, PID_ROLL_KP,
-                             PID_ROLL_KI, PID_ROLL_KD,
-                             -PID_ROLL_INTEGRATION_LIMIT,
-                             PID_ROLL_INTEGRATION_LIMIT,
+      Attitude_Pid.Pid_Init (Roll_Pid, 0.0,
+                             PID_KP_ROLL_PITCH,
+                             PID_KI_ROLL_PITCH,
+                             PID_KD_ROLL_PITCH,
+                             -PID_I_LIMIT_ROLL_PITCH,
+                             PID_I_LIMIT_ROLL_PITCH,
                              IMU_UPDATE_DT);
-      Attitude_Pid.Pid_Init (Pitch_Pid, 0.0, PID_PITCH_KP,
-                             PID_PITCH_KI, PID_PITCH_KD,
-                             -PID_PITCH_INTEGRATION_LIMIT,
-                             PID_PITCH_INTEGRATION_LIMIT,
+      Attitude_Pid.Pid_Init (Pitch_Pid, 0.0,
+                             PID_KP_ROLL_PITCH,
+                             PID_KI_ROLL_PITCH,
+                             PID_KD_ROLL_PITCH,
+                             -PID_I_LIMIT_ROLL_PITCH,
+                             PID_I_LIMIT_ROLL_PITCH,
                              IMU_UPDATE_DT);
-      Attitude_Pid.Pid_Init (Yaw_Pid, 0.0, PID_YAW_KP,
-                             PID_YAW_KI, PID_YAW_KD,
-                             -PID_YAW_INTEGRATION_LIMIT,
-                             PID_YAW_INTEGRATION_LIMIT,
+      Attitude_Pid.Pid_Init (Yaw_Pid, 0.0,
+                             PID_KP_YAW,
+                             PID_KI_YAW,
+                             PID_KD_YAW,
+                             -PID_I_LIMIT_YAW,
+                             PID_I_LIMIT_YAW,
                              IMU_UPDATE_DT);
 
       Is_Init := True;

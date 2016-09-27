@@ -43,7 +43,7 @@ with SPARK_Mode,
 is
 
    --  Needed for Madgwick algorithm.
-   Beta : constant T_Alpha := 0.08;
+   Beta : constant T_Alpha := MADWICK_BETA;
 
    --  Subtypes used to help SPARK proving absence of runtime errors
    --  in the Mahony algorithm

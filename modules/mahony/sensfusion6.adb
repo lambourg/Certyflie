@@ -29,6 +29,7 @@
 
 with Ada.Numerics; use Ada.Numerics;
 
+with Config;       use Config;
 with Maths;        use Maths;
 with Safety;       use Safety;
 
@@ -46,9 +47,9 @@ with SPARK_Mode,
                                           Integral_FBz))
 is
 
-   Two_Kp : constant Float := 2.0 * 0.4;
+   Two_Kp : constant Float := MAHONY_TWO_KP;
    --  2 * proportional gain (Kp)
-   Two_Ki : constant Float := 2.0 * 0.001;
+   Two_Ki : constant Float := MAHONY_TWO_KI;
    --  2 * integral gain (Ki)
 
    --  Integral error terms scaled by Ki.

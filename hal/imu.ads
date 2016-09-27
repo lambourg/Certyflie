@@ -30,6 +30,7 @@
 with Ada.Numerics;  use Ada.Numerics;
 with Ada.Real_Time; use Ada.Real_Time;
 
+with Config;        use Config;
 with Filter;        use Filter;
 with MPU9250;       use MPU9250;
 with Types;         use Types;
@@ -115,8 +116,24 @@ is
    GYRO_VARIANCE_THRESHOLD_Y : constant := (GYRO_VARIANCE_BASE);
    GYRO_VARIANCE_THRESHOLD_Z : constant := (GYRO_VARIANCE_BASE);
 
-   IMU_DEG_PER_LSB_CFG       : constant := MPU9250_DEG_PER_LSB_2000;
-   IMU_G_PER_LSB_CFG         : constant := MPU9250_G_PER_LSB_8;
+   IMU_DEG_PER_LSB_CFG       : constant := (case IMU_GYRO_FS_CONFIG is
+                                               when MPU9250_Gyro_FS_250 =>
+                                                  MPU9250_DEG_PER_LSB_250,
+                                               when MPU9250_Gyro_FS_500 =>
+                                                  MPU9250_DEG_PER_LSB_500,
+                                               when MPU9250_Gyro_FS_1000 =>
+                                                  MPU9250_DEG_PER_LSB_1000,
+                                               when MPU9250_Gyro_FS_2000 =>
+                                                  MPU9250_DEG_PER_LSB_2000);
+   IMU_G_PER_LSB_CFG         : constant := (case IMU_ACCEL_FS_CONFIG is
+                                               when MPU9250_Accel_FS_2 =>
+                                                  MPU9250_G_PER_LSB_2,
+                                               when MPU9250_Accel_FS_4 =>
+                                                  MPU9250_G_PER_LSB_4,
+                                               when MPU9250_Accel_FS_8 =>
+                                                  MPU9250_G_PER_LSB_8,
+                                               when MPU9250_Accel_FS_16 =>
+                                                  MPU9250_G_PER_LSB_16);
 
    IMU_VARIANCE_MAN_TEST_TIMEOUT : constant Time_Span := Milliseconds (1_000);
    IMU_MAN_TEST_LEVEL_MAX : constant := 5.0;
